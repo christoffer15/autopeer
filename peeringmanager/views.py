@@ -62,10 +62,10 @@ class PeeringForm(forms.ModelForm):
 		return self.cleaned_data['asn']
 
 	def clean_endpoint_internal_v4(self):
-		if self.cleaned_data['endpoint_internal_v4']:
-			mntby = get_whois_field(self.cleaned_data['endpoint_internal_v4'], 'mnt-by')
-			if self.user.dn42_mntner not in mntby:
-				raise ValidationError(_('User is not listed as mnt-by for this IP'))
+#		if self.cleaned_data['endpoint_internal_v4']:
+#			mntby = get_whois_field(self.cleaned_data['endpoint_internal_v4'], 'mnt-by')
+#			if self.user.dn42_mntner not in mntby:
+#				raise ValidationError(_('User is not listed as mnt-by for this IP'))
 
 		return self.cleaned_data['endpoint_internal_v4']
 

@@ -16,10 +16,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'dn42auth',
+    'accounts',
     'peeringmanager',
     'bootstrap5',
     'loginas',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -46,12 +47,18 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'autopeer.wsgi.application'
+
+AUTHENTICATION_BACKENDS = ( 
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 DATABASES = {
     'default': {
@@ -110,8 +117,11 @@ LOGIN_REDIRECT_URL = '/peerings/'
 LOGIN_URL = '/login/'
 
 POSTMARK_KEY = ''
-AUTH_USER_MODEL = 'dn42auth.DN42User'
+AUTH_USER_MODEL = 'accounts.PDBUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
 
 # Use the file local_settings.py to overwrite the defaults with your own settings
 try:

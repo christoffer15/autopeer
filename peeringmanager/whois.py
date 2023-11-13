@@ -5,11 +5,11 @@ import subprocess
 
 def whois_query(obj):
 	try:
-		r = subprocess.run(['whois', '-h', 'whois.dn42', obj], stdout=subprocess.PIPE)
+		r = subprocess.run(['whois', '-h', 'rr.ntt.net', obj], stdout=subprocess.PIPE)
 		r.check_returncode()
 		whois_data = r.stdout.decode()
 	except Exception:
-		raise ValidationError(_('Could not connect to dn42 whois servers.'))
+		raise ValidationError(_('Could not connect to whois servers.'))
 
 	if len(whois_data) < 1:
 		return None

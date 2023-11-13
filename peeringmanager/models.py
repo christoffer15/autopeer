@@ -17,8 +17,6 @@ class Router(models.Model):
 	active = models.BooleanField(default=True, verbose_name=_('Active'),
 		help_text=_('Users can only create peerings to active routers'))
 
-	lg_id = models.CharField(verbose_name=_('Looking Glass ID'), max_length=150)
-
 	def __str__(self):
 		return f'{self.location} ({self.host_external})'
 
